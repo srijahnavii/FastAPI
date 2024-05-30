@@ -1,0 +1,30 @@
+from typing import Optional
+from pydantic import BaseModel, Field
+
+class StudentSchema(BaseModel):
+    name: str = Field(...)
+    age: int = Field(...)
+    course: str = Field(...)
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "name": "Haru",
+                "age": 21,
+                "course": "Computer Science"
+            }
+        }
+
+class UpdateStudentModel(BaseModel):
+    name: Optional[str]
+    age: Optional[int]
+    course: Optional[str]
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "name": "Haru",
+                "age": 21,
+                "course": "Computer Science"
+            }
+        }
