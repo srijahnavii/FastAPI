@@ -1,2 +1,21 @@
-from pymongo import MongoClient
-conn = MongoClient()
+
+from motor.motor_asyncio import AsyncIOMotorClient
+from bson.objectid import ObjectId
+from typing import Any
+
+MONGO_DETAILS = "mongodb://localhost:27017"
+
+client = AsyncIOMotorClient(MONGO_DETAILS)
+
+database = client.test_database
+
+student_collection = database.get_collection("students_collection")
+
+# Helpers
+def student_helper(student) -> dict:
+    return {
+        "id": str(student["_id"]),
+        "name": student["name"],
+        "age": student["age"],
+        "course": student["course"],
+    }
